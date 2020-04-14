@@ -1,5 +1,5 @@
 # TO-DO: complete the helpe function below to merge 2 sorted arrays
-
+import random
 #Expects 2 sorted sub-lists as resources to produced a single merged and sorted list
 def merge( arrA, arrB ):
     elements = len( arrA ) + len( arrB )
@@ -21,19 +21,37 @@ def merge( arrA, arrB ):
 
     return merged_arr
 
-print(merge([1, 2], [5, 8]))
 # TO-DO: implement the Merge Sort function below USING RECURSION
+myList = []
+for i in range(0, 10):
+    myList.append(random.randint(0, 10))
+print(myList)
+
 def merge_sort( arr ):
     # TO-DO
-    # Recurse Case : Continue to break up pieces into halves until each list only has 1 component item
-    indie = []
-    for i in arr:
-        indie.append([i])
-    # How do lists point to one anotehr for sorting? 
-    
-    # How do I track the 
-    return arr
+    arrA = []
+    arrB = []
 
+    if(len(arr) > 1):
+        mid = len(arr) // 2
+        arrA = arr[:mid]
+        arrB = arr[mid:]
+    else:
+        return arr
+
+    # if arrA or arrB has a length greater than 1, recurse merge_sort
+    if(len(arrA) > 1):
+        arrA = merge_sort(arrA)
+    if(len(arrB) > 1):
+        arrB = merge_sort(arrB)
+
+    # The return of merge sort will necessarily be the calling of merge, which sorts
+    return merge(arrA, arrB)
+myList = []
+for i in range(0, 10):
+    myList.append(random.randint(0, 10))
+
+print(merge_sort(myList))
 
 # STRETCH: implement an in-place merge sort algorithm
 def merge_in_place(arr, start, mid, end):
